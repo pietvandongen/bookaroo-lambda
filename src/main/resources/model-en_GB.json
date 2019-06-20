@@ -1,0 +1,371 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "room assistant",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": [
+            "how do you work"
+          ]
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AvailableIntent",
+          "slots": [
+            {
+              "name": "time",
+              "type": "AMAZON.TIME",
+              "samples": [
+                "Starting at {time}",
+                "From {time}",
+                "{time}"
+              ]
+            }
+          ],
+          "samples": [
+            "if the room is free",
+            "if the room is free at {time}",
+            "the availability at {time}",
+            "if the room's available at {time}",
+            "about availability",
+            "to get the room's availability",
+            "to give me the room's availability",
+            "it knows if the room is available",
+            "if I can go in {time}",
+            "if we can go in {time}",
+            "the room availability at {time}",
+            "the room availability",
+            "if I can take this room at {time}",
+            "if I can take this room"
+          ]
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "ReserveDurationIntent",
+          "slots": [
+            {
+              "name": "startTime",
+              "type": "AMAZON.TIME",
+              "samples": [
+                "At {startTime}",
+                "From {startTime}",
+                "Starting {startTime}",
+                "Starting at {startTime}",
+                "Around {startTime}",
+                "{startTime}"
+              ]
+            },
+            {
+              "name": "duration",
+              "type": "reserveDuration"
+            }
+          ],
+          "samples": [
+            "I want this room",
+            "if I can book this room {startTime}",
+            "if I can book this room from {startTime}",
+            "if I can book this room from {startTime} for {duration}",
+            "if I can book this room",
+            "if I can book this room for {duration}",
+            "I want to book this room for {duration}",
+            "if it could reserve this room for {duration}",
+            "if it could book this room for {duration}"
+          ]
+        },
+        {
+          "name": "ReservePeriodIntent",
+          "slots": [
+            {
+              "name": "startTime",
+              "type": "AMAZON.TIME",
+              "samples": [
+                "At {startTime}",
+                "From {startTime}",
+                "Around {startTime}",
+                "{startTime}",
+                "Starting at {startTime}",
+                "Starting {startTime}"
+              ]
+            },
+            {
+              "name": "endTime",
+              "type": "AMAZON.TIME",
+              "samples": [
+                "Until {endTime}",
+                "{endTime}"
+              ]
+            }
+          ],
+          "samples": [
+            "If I can book this room until {endTime}",
+            "If I can book this room from {startTime} until {endTime}"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "name": "reserveDuration",
+          "values": [
+            {
+              "id": "240m",
+              "name": {
+                "value": "two hundred and forty minutes",
+                "synonyms": [
+                  "two hundred and forty",
+                  "four hours"
+                ]
+              }
+            },
+            {
+              "id": "210m",
+              "name": {
+                "value": "two hundred and ten minutes minutes",
+                "synonyms": [
+                  "two hundred and ten minutes",
+                  "three and an half hour"
+                ]
+              }
+            },
+            {
+              "id": "180m",
+              "name": {
+                "value": "one hundred and eighty minutes minutes",
+                "synonyms": [
+                  "one hundred and eighty",
+                  "three hours"
+                ]
+              }
+            },
+            {
+              "id": "150m",
+              "name": {
+                "value": "one hundred and fifty minutes",
+                "synonyms": [
+                  "one hundred and fifty ",
+                  "two and an half hour"
+                ]
+              }
+            },
+            {
+              "id": "120m",
+              "name": {
+                "value": "one hundred and twenty minutes",
+                "synonyms": [
+                  "one hundred and twenty ",
+                  "two hours"
+                ]
+              }
+            },
+            {
+              "id": "90m",
+              "name": {
+                "value": "ninety minutes",
+                "synonyms": [
+                  "ninety",
+                  "one and an half hour"
+                ]
+              }
+            },
+            {
+              "id": "60m",
+              "name": {
+                "value": "sixty minutes",
+                "synonyms": [
+                  "sixty",
+                  "fifty minutes",
+                  "an hour"
+                ]
+              }
+            },
+            {
+              "id": "45m",
+              "name": {
+                "value": "forty five minutes",
+                "synonyms": [
+                  "forty five",
+                  "forty minutes",
+                  "three quarters of an hour"
+                ]
+              }
+            },
+            {
+              "id": "30m",
+              "name": {
+                "value": "thirty minutes",
+                "synonyms": [
+                  "twenty five minutes",
+                  "twenty minutes",
+                  "half an hour"
+                ]
+              }
+            },
+            {
+              "id": "15m",
+              "name": {
+                "value": "fifteen minutes",
+                "synonyms": [
+                  "ten minutes",
+                  "fifteen",
+                  "quarter of an hour"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "AvailableIntent",
+          "delegationStrategy": "ALWAYS",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "time",
+              "type": "AMAZON.TIME",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1303830217408.1129253152328"
+              }
+            }
+          ]
+        },
+        {
+          "name": "ReserveDurationIntent",
+          "confirmationRequired": true,
+          "prompts": {
+            "confirmation": "Confirm.Intent.121202748253"
+          },
+          "slots": [
+            {
+              "name": "startTime",
+              "type": "AMAZON.TIME",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.698258538023.958346345377"
+              }
+            },
+            {
+              "name": "duration",
+              "type": "reserveDuration",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1498718932464.364934683701"
+              }
+            }
+          ]
+        },
+        {
+          "name": "ReservePeriodIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "startTime",
+              "type": "AMAZON.TIME",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.798096316486.256101241763"
+              }
+            },
+            {
+              "name": "endTime",
+              "type": "AMAZON.TIME",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.798096316486.730028178308"
+              }
+            }
+          ]
+        }
+      ],
+      "delegationStrategy": "ALWAYS"
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Slot.1303830217408.1129253152328",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "The availability at what time?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.1498718932464.364934683701",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "For how long?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.798096316486.256101241763",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "What starting time works for you?"
+          },
+          {
+            "type": "PlainText",
+            "value": "You want to book the room until {endTime} , but starting from when?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.798096316486.730028178308",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Until when do you want the room?"
+          },
+          {
+            "type": "PlainText",
+            "value": "You want to book the room from {startTime} , but until when?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.698258538023.958346345377",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "You want to book the room for {duration} , but starting from when?"
+          },
+          {
+            "type": "PlainText",
+            "value": "What starting time works for you?"
+          }
+        ]
+      },
+      {
+        "id": "Confirm.Intent.121202748253",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Would you like me to book this room from {startTime} for {duration} ?"
+          }
+        ]
+      }
+    ]
+  }
+}
